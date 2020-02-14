@@ -1,0 +1,40 @@
+
+<div class="row pt-5">
+    <div class="col-md-4 mt-5 mx-auto">
+        <form autocomplete="off">
+        <mat-card class="example-card ">
+            <mat-card-header>
+              
+              <mat-card-title >Register form</mat-card-title>
+              <mat-card-subtitle>Gael Soft</mat-card-subtitle>
+            </mat-card-header>
+            
+            <mat-card-content>
+              
+                
+                   <div class="container">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input name="email" [(ngModel)]="userData.email" type="email" matInput placeholder="felipe@gaelsoft.com" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Username</mat-label>
+                        <input name="username" [(ngModel)]="userData.username" title="Only letters and numbers" type="text" matInput placeholder="felipemantilla01" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input name="password" [(ngModel)]="userData.password" type="password" matInput placeholder="********" required>
+                    </mat-form-field>
+                   </div>
+                    
+                                   
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="container mb-4">
+                    <button mat-raised-button (click)="registry()" class="btn-block" color="warn">Registry</button>
+                </div>
+            </mat-card-actions>
+          </mat-card>
+        </form>
+    </div>
+</div>

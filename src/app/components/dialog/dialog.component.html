@@ -1,0 +1,66 @@
+
+    <h4 mat-dialog-title>Create a new task</h4>
+
+    
+
+    <form autocomplete="off">
+        <mat-grid-list cols="1" rowHeight="70px">
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input type="text" placeholder="Description" class="block" matInput required>                
+                </mat-form-field>            
+            </mat-grid-tile>
+    
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input type="text" placeholder="Project" class="block" matInput required>                
+                </mat-form-field>            
+            </mat-grid-tile>
+    
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Type</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let taskType of taskTypes" [value]="taskType">
+                        <mat-icon>{{taskType.icon}}</mat-icon> {{taskType.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>          
+            </mat-grid-tile>
+    
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Priority</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let priority of prioritys" [value]="priority">
+                        <mat-icon color="{{priority.color}}">{{priority.icon}}</mat-icon> {{priority.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>          
+            </mat-grid-tile>
+            
+
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Assignee</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let priority of prioritys" [value]="priority">
+                        <mat-icon color="{{priority.color}}">{{priority.icon}}</mat-icon> {{priority.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>          
+            </mat-grid-tile>
+
+
+          </mat-grid-list>
+        
+          <mat-dialog-actions>
+            <button class=" btn-block" (click)="close()" mat-raised-button  color="primary" (click)="createNew()" > Create </button> 
+        </mat-dialog-actions>  
+
+    </form>
+      
+
+
+    
+
