@@ -3,7 +3,7 @@ import { TasksService } from 'src/app/services/tasks.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig} from '@angular/material';
-import { DialogComponent } from '../dialog/dialog.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @Component({
@@ -39,6 +39,18 @@ export class TaskListComponent implements OnInit {
     dialogConfig.width = "35%"
 
     let dialogRef = this.dialog.open(DialogComponent,dialogConfig)
+  }
+
+  changeState(state, taskId){
+    console.log(state, taskId)
+
+    let task={
+      _id:taskId,
+      state:state
+    }
+    this._tasksService.updateTask(task).subscribe(res=>{
+
+    })
   }
 
 }

@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
           this.openSnackBar(`${res.email} registered successfully`,'understood', 1000)
           setTimeout(() => {
             this._router.navigate(['/login'])
-          }, 2000);
+          }, 1000);
         },
         
         (err) =>{

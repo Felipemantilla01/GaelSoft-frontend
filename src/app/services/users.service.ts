@@ -15,6 +15,10 @@ export class UsersService {
     return this._http.post(`${environment._apiUrl}/${environment._usersUrl}`,user)
   }
 
+  getUsers(){
+    return this._http.get(`${environment._apiUrl}/${environment._usersUrl}`);
+  }
+
 
 
 

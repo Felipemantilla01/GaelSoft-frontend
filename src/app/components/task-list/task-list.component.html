@@ -14,7 +14,7 @@
         </mat-panel-title>
         <mat-panel-description >
             <div class="description"><mat-chip-list >
-                <mat-chip color="warn" selected>{{task.assigned.to}}</mat-chip> 
+                <mat-chip color="warn" selected>{{task.assignee.to}}</mat-chip> 
                 
             </mat-chip-list>
         </div>
@@ -24,7 +24,7 @@
       <b>{{task.description | uppercase}}</b>
       <hr>
       <ul>
-          <li><b>ToDo:        </b> {{task.assigned.at | date:'medium'}}</li>
+          <li><b>ToDo:        </b> {{task.assignee.at | date:'medium'}}</li>
           <li><b>In Progress:</b>  {{task.state.inProgress.at | date:'medium'}} </li>
           <li><b>Done:        </b> {{task.state.done.at | date:'medium'}}  </li>
       </ul>
@@ -36,17 +36,21 @@
     <mat-tab label="ToDo">
        <mat-accordion>
     <mat-expansion-panel *ngFor="let task of tasks">
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header *ngIf="task.state.todo.state=='active'">
         <mat-panel-title>
            <span>
-            <mat-icon title ="Todo"  color="primary" >note_add</mat-icon> 
+           <mat-icon title ="{{task.type.name}}"  color="primary" >{{task.type.icon}}</mat-icon> 
            </span>
+           <span>
+           <mat-icon title ="{{task.priority.name}}"  color="{{task.priority.color}}" >{{task.priority.icon}}</mat-icon> 
+            </span>
 
-           <b>{{task.description | uppercase}}</b>
+
+           <b>{{task.title | uppercase}}</b>
         </mat-panel-title>
         <mat-panel-description >
             <div class="right"><mat-chip-list >
-                <mat-chip title="responsable" color="warn" selected>{{task.assigned.to}}</mat-chip> 
+                <mat-chip title="responsable" color="warn" selected>{{task.assignee.to}}</mat-chip> 
                 <mat-chip title="project" color="primary" selected>{{task.project}}</mat-chip> 
 
                 
@@ -55,20 +59,119 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <hr>
-      <b>{{task.description | uppercase}}</b>
+       <div class="row">
+         <div class="col-md-9">
+          <b>Description:</b> {{task.description | titlecase}}
+         </div>
+         <div class="col-md-3">
+            <mat-form-field>
+              <mat-label>Change State</mat-label>
+              <mat-select (selectionChange)="changeState(sel.value,task._id)" #sel>
+                <mat-option value="inProgress">In Progress</mat-option>
+                <mat-option value="done">Done</mat-option>
+              </mat-select>
+            </mat-form-field>
+         </div>
+       </div>
       <hr>
       <ul>
-          <li><b>ToDo:        </b> {{task.assigned.at | date:'medium'}}</li>
+          <li><b>ToDo:        </b> {{task.assignee.at | date:'medium'}}</li>
           <li><b>In Progress:</b>  {{task.state.inProgress.at | date:'medium'}} </li>
           <li><b>Done:        </b> {{task.state.done.at | date:'medium'}}  </li>
       </ul>
     </mat-expansion-panel>
     
-  </mat-accordion>
+      </mat-accordion>
 
     </mat-tab>
-    <mat-tab label="InProgress">Content 2</mat-tab>
-    <mat-tab label="Done">Content 3</mat-tab>
+
+    <mat-tab label="InProgress">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let task of tasks">
+          <mat-expansion-panel-header *ngIf="task.state.inProgress.state=='active'">
+            <mat-panel-title>
+               <span>
+               <mat-icon title ="{{task.type.name}}"  color="primary" >{{task.type.icon}}</mat-icon> 
+               </span>
+               <span>
+               <mat-icon title ="{{task.priority.name}}"  color="{{task.priority.color}}" >{{task.priority.icon}}</mat-icon> 
+                </span>
+    
+    
+               <b>{{task.title | uppercase}}</b>
+            </mat-panel-title>
+            <mat-panel-description >
+                <div class="right"><mat-chip-list >
+                    <mat-chip title="responsable" color="warn" selected>{{task.assignee.to}}</mat-chip> 
+                    <mat-chip title="project" color="primary" selected>{{task.project}}</mat-chip> 
+    
+                    
+                </mat-chip-list>
+            </div>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <hr>
+          <div class="row">
+            <div class="col-md-9">
+             <b>Description:</b> {{task.description | titlecase}}
+            </div>
+            <div class="col-md-3">
+               <mat-form-field>
+                 <mat-label>Change State</mat-label>
+                 <mat-select (selectionChange)="changeState(sel.value,task._id)" #sel>
+                   <mat-option value="done">Done</mat-option>
+                 </mat-select>
+               </mat-form-field>
+            </div>
+          </div>
+          <hr>
+          <ul>
+              <li><b>ToDo:        </b> {{task.assignee.at | date:'medium'}}</li>
+              <li><b>In Progress:</b>  {{task.state.inProgress.at | date:'medium'}} </li>
+              <li><b>Done:        </b> {{task.state.done.at | date:'medium'}}  </li>
+          </ul>
+        </mat-expansion-panel>
+        
+          </mat-accordion>
+    </mat-tab>
+
+    <mat-tab label="Done">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let task of tasks">
+          <mat-expansion-panel-header *ngIf="task.state.done.state=='active'">
+            <mat-panel-title>
+               <span>
+               <mat-icon title ="{{task.type.name}}"  color="primary" >{{task.type.icon}}</mat-icon> 
+               </span>
+               <span>
+               <mat-icon title ="{{task.priority.name}}"  color="{{task.priority.color}}" >{{task.priority.icon}}</mat-icon> 
+                </span>
+    
+    
+               <b>{{task.title | uppercase}}</b>
+            </mat-panel-title>
+            <mat-panel-description >
+                <div class="right"><mat-chip-list >
+                    <mat-chip title="responsable" color="warn" selected>{{task.assignee.to}}</mat-chip> 
+                    <mat-chip title="project" color="primary" selected>{{task.project}}</mat-chip> 
+    
+                    
+                </mat-chip-list>
+            </div>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <hr>
+           <b>Description:</b> {{task.description | titlecase}}
+          <hr>
+          <ul>
+              <li><b>ToDo:        </b> {{task.assignee.at | date:'medium'}}</li>
+              <li><b>In Progress:</b>  {{task.state.inProgress.at | date:'medium'}} </li>
+              <li><b>Done:        </b> {{task.state.done.at | date:'medium'}}  </li>
+          </ul>
+        </mat-expansion-panel>
+        
+          </mat-accordion>
+    </mat-tab>
   </mat-tab-group>
   
 </div>
@@ -78,3 +181,5 @@
     <mat-icon>add</mat-icon>
   </button>
 </div>
+
+<div class="mb-5"></div>

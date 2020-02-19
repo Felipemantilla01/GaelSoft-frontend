@@ -17,7 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import { DialogComponent } from './components/dialog/dialog.component';
+import { DialogComponent } from './components/task-list/dialog/dialog.component';
 
 @NgModule({
   declarations: [
