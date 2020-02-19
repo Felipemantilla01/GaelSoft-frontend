@@ -45,12 +45,11 @@ export class TaskListComponent implements OnInit {
     let dialogRef = this.dialog.open(DialogComponent,dialogConfig)
   }
 
-  changeState(state, taskId){
-    console.log(state, taskId)
-
+  changeState(state, _id){
+    //console.log(state, taskId)
     let task={
-      _id:taskId,
-      state: state
+      _id,
+      state
     }
     this._tasksService.updateTask(task).subscribe(
       res=> this.getTasks(),
@@ -71,6 +70,20 @@ export class TaskListComponent implements OnInit {
         res=> this.getTasks(),
         err => console.log(err)
       )
+    }
+  }
+
+  addComment(_id){
+    let comment = prompt('Add new Task comment or advance')
+    if(!!comment){
+      let task ={
+        _id,
+        comment
+      }
+      this._tasksService.createComment(task).subscribe(
+        res=> this.getTasks(),
+        err => console.log(err)
+        )
     }
   }
 

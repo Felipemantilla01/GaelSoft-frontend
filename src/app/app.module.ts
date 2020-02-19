@@ -18,6 +18,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { DialogComponent } from './components/task-list/dialog/dialog.component';
+import { CommentsComponent } from './components/task-list/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DialogComponent } from './components/task-list/dialog/dialog.component'
     RegisterComponent,
     LoginComponent,
     WelcomeComponent,
-    DialogComponent
+    DialogComponent,
+    CommentsComponent
   ],
   entryComponents:[DialogComponent],
   imports: [

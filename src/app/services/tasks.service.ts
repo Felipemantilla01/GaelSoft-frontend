@@ -23,9 +23,16 @@ export class TasksService {
     return this._http.put(`${environment._apiUrl}/${environment._taskUrl}`,task)
   }
 
-  deleteTask(task){
-    
+  deleteTask(task){    
     return this._http.delete(`${environment._apiUrl}/${environment._taskUrl}/${task._id}`,{responseType: 'text'})
   }
 
+  getComments(taskId){
+    return this._http.get(`${environment._apiUrl}/${environment._taskUrl}/${taskId}/comments`)
+  }
+
+  createComment(task){
+    return this._http.post(`${environment._apiUrl}/${environment._taskUrl}/${task._id}/comments`, task)
+
+  }
 }

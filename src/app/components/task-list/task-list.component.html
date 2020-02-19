@@ -30,33 +30,42 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <hr>
-       <div class="row">
-         <div class="col-md-8">
-          <b>Description:</b> {{task.description | titlecase}}
-         </div>
-         <div class="col-md-3">
-            <mat-form-field>
-              <mat-label>Change State</mat-label>
-              <mat-select (selectionChange)="changeState(sel.value,task._id)" #sel>
-                <mat-option value="inProgress">In Progress</mat-option>
-                <mat-option value="done">Done</mat-option>
-              </mat-select>
-            </mat-form-field>
-         </div>
 
-         <div class="col-md-1">
-           <button title="Delete Task" mat-mini-fab color="warn" (click)="deleteTask(task._id)">
-             <mat-icon>delete</mat-icon>
-           </button>
-         </div>
+       <mat-card class="mat-elevation-z3">
+        <div class="row">
+          <div class="col-md-8">
+            <h4>Panel</h4>
+           <b>Description:</b> {{task.description | titlecase}}
+          </div>
+          <div class="col-md-3">
+             <mat-form-field>
+               <mat-label>Change State</mat-label>
+               <mat-select (selectionChange)="changeState(sel.value,task._id)" #sel>
+                 <mat-option value="inProgress">In Progress</mat-option>
+                 <mat-option value="done">Done</mat-option>
+               </mat-select>
+             </mat-form-field>
+          </div>
+ 
+          <div class="col-md-1">
+            <button title="Delete Task" mat-mini-fab color="warn" (click)="deleteTask(task._id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+ 
+        </div>
+       </mat-card>
 
-       </div>
       <hr>
-      <ul>
+      <mat-card class="mat-elevation-z3">
+        <h4>Task Status</h4>
+        <ul>
           <li><b>ToDo:        </b> {{task.assignee.at | date:'medium'}}</li>
           <li><b>In Progress:</b>  {{task.state.inProgress.at | date:'medium'}} </li>
           <li><b>Done:        </b> {{task.state.done.at | date:'medium'}}  </li>
       </ul>
+
+      </mat-card>
     </mat-expansion-panel>
     
       </mat-accordion>
@@ -89,8 +98,11 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <hr>
+
+         <mat-card class="mat-elevation-z3">
           <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
+              <h4>Panel</h4>
              <b>Description:</b> {{task.description | titlecase}}
             </div>
             <div class="col-md-3">
@@ -101,13 +113,37 @@
                  </mat-select>
                </mat-form-field>
             </div>
+
+            <div class="col-md-1">
+              <button title="Add advance" mat-mini-fab color="warn" (click)="addComment(task._id)">
+                <mat-icon>note_add</mat-icon>
+              </button>
+            </div>
+
           </div>
+
+         </mat-card>
+
           <hr>
-          <ul>
-              <li><b>ToDo:        </b> {{task.assignee.at | date:'medium'}}</li>
-              <li><b>In Progress:</b>  {{task.state.inProgress.at | date:'medium'}} </li>
-              <li><b>Done:        </b> {{task.state.done.at | date:'medium'}}  </li>
-          </ul>
+          <div class="row">
+            <div class="col-md-5">
+              
+              <mat-card class="mat-elevation-z3" >
+                <h4>Task Status</h4>
+              <ul>
+                <li><b>ToDo: </b> {{task.assignee.at | date:'medium'}}</li>
+                <li><b>In Progress:</b> {{task.state.inProgress.at | date:'medium'}} </li>
+                <li><b>Done: </b> {{task.state.done.at | date:'medium'}} </li>
+              </ul>
+            </mat-card>
+            </div>
+
+            <div class="col-md-7">
+              <!-- new component to show the comments for every task -->
+              <app-comments _id="{{task._id}}" ></app-comments>
+
+            </div>
+          </div>
         </mat-expansion-panel>
         
           </mat-accordion>
@@ -139,13 +175,26 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <hr>
-           <b>Description:</b> {{task.description | titlecase}}
+           <mat-card class="mat-elevation-z3">
+             <h4>Panel</h4>
+            <b>Description:</b> {{task.description | titlecase}}
+           </mat-card>
           <hr>
-          <ul>
-              <li><b>ToDo:        </b> {{task.assignee.at | date:'medium'}}</li>
-              <li><b>In Progress:</b>  {{task.state.inProgress.at | date:'medium'}} </li>
-              <li><b>Done:        </b> {{task.state.done.at | date:'medium'}}  </li>
-          </ul>
+          <div class="row">
+            <div class="col md-5">
+             <mat-card class="mat-elevation-z3">
+              <h4>Task Status</h4>
+              <ul>
+                <li><b>ToDo:        </b> {{task.assignee.at | date:'medium'}}</li>
+                <li><b>In Progress:</b>  {{task.state.inProgress.at | date:'medium'}} </li>
+                <li><b>Done:        </b> {{task.state.done.at | date:'medium'}}  </li>
+            </ul>
+          </mat-card>
+            </div>
+            <div class="col-md-7">
+              <app-comments _id="{{task._id}}" ></app-comments>
+            </div>
+          </div>
         </mat-expansion-panel>
         
           </mat-accordion>
