@@ -22,6 +22,10 @@ export class TaskListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getTasks()
+  }
+
+  private getTasks(){
     this._tasksService.getTasks().subscribe(
       tasks =>  this.tasks = tasks,
       err   =>  {
@@ -46,11 +50,29 @@ export class TaskListComponent implements OnInit {
 
     let task={
       _id:taskId,
-      state:state
+      state: state
     }
-    this._tasksService.updateTask(task).subscribe(res=>{
-
-    })
+    this._tasksService.updateTask(task).subscribe(
+      res=> this.getTasks(),
+      err => console.log(err)
+      )
   }
+
+
+  deleteTask(_id){
+
+    let task={
+      _id
+    }
+    let response = confirm('Are you sure?')
+    if(response){
+      console.log(task)
+      this._tasksService.deleteTask(task).subscribe(
+        res=> this.getTasks(),
+        err => console.log(err)
+      )
+    }
+  }
+
 
 }

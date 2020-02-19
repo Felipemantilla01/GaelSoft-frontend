@@ -23,4 +23,9 @@ export class TasksService {
     return this._http.put(`${environment._apiUrl}/${environment._taskUrl}`,task)
   }
 
+  deleteTask(task){
+    
+    return this._http.delete(`${environment._apiUrl}/${environment._taskUrl}/${task._id}`,{responseType: 'text'})
+  }
+
 }
