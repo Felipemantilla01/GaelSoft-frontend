@@ -16,12 +16,24 @@
                     <input type="text" #description placeholder="Description" class="block" matInput required>                
                 </mat-form-field>            
             </mat-grid-tile>           
-    
+<!--     
             <mat-grid-tile>
                 <mat-form-field>
                     <input type="text" #project placeholder="Project" class="block" matInput required>                
                 </mat-form-field>            
-            </mat-grid-tile>
+            </mat-grid-tile> -->
+
+            <mat-grid-tile>
+              <mat-form-field >
+                  <mat-label>Project</mat-label>
+                  <mat-select #project>
+                    <mat-option *ngFor="let project of projects" [value]="project.name">
+                      {{project.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>          
+          </mat-grid-tile>
+
     
             <mat-grid-tile>
                 <mat-form-field>

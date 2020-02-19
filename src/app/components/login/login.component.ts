@@ -30,8 +30,10 @@ export class LoginComponent implements OnInit {
     }else{
       this._authService.loginUser(this.userData).subscribe(
         (res) => {
-          console.log(res)
+          //console.log(res)
           localStorage.setItem('token', res.token)
+          localStorage.setItem('username', res.username)
+          localStorage.setItem('role', res.role)
           //this.openSnackBar(`${res.email} Login successfully`,'understood', 1000)
           this._router.navigate(['/dashboard'])
         },        

@@ -1,0 +1,41 @@
+
+    <h4 mat-dialog-title>  Create new Project  </h4>    
+
+    <form autocomplete="off">
+        <mat-grid-list cols="1" rowHeight="70px">
+              <mat-grid-tile>
+                <mat-icon class="mr-3">fingerprint</mat-icon>
+                <mat-form-field>                    
+                    <input type="text" #name placeholder="Name" class="block" matInput required>                
+                </mat-form-field>            
+            </mat-grid-tile>
+
+            <mat-grid-tile >
+                <mat-icon class="mr-3">description</mat-icon>
+                <mat-form-field>                    
+                    <input type="text" #description placeholder="Description" class="block" matInput required>                
+                </mat-form-field>            
+            </mat-grid-tile>           
+    
+            <mat-grid-tile>
+                <mat-icon class="mr-3">dns</mat-icon>
+                <mat-form-field>
+                    <input type="text" #repository placeholder="repository" class="block" matInput required>                
+                </mat-form-field>            
+            </mat-grid-tile>    
+
+          </mat-grid-list>
+        
+          <mat-dialog-actions>
+            <button 
+            class=" btn-block" 
+            type="submit"  
+            mat-raised-button  
+            color="primary" 
+            (click)="createProject(description.value,name.value,repository.value)"
+            [disabled]="!!!description.value || !!!name.value || !!!repository.value " >
+            Create </button> 
+
+        </mat-dialog-actions>  
+
+    </form>

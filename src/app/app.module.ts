@@ -19,6 +19,10 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { DialogComponent } from './components/task-list/dialog/dialog.component';
 import { CommentsComponent } from './components/task-list/comments/comments.component';
+import { DialogProjectComponent } from './components/task-list/dialog-project/dialog-project.component';
+import { UsersService } from './services/users.service';
+import { ProjectsService } from './services/projects.service';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +32,11 @@ import { CommentsComponent } from './components/task-list/comments/comments.comp
     LoginComponent,
     WelcomeComponent,
     DialogComponent,
-    CommentsComponent
+    CommentsComponent,
+    DialogProjectComponent,
+    PagenotfoundComponent
   ],
-  entryComponents:[DialogComponent],
+  entryComponents:[DialogComponent, DialogProjectComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,7 +47,7 @@ import { CommentsComponent } from './components/task-list/comments/comments.comp
     FormsModule,
     MatDialogModule
   ],
-  providers: [TasksService, AuthService, AuthGuard, {
+  providers: [UsersService,ProjectsService,TasksService, AuthService, AuthGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true

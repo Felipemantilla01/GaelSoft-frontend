@@ -1,5 +1,5 @@
 <h3 class="mt-2"> Dashboard</h3>
-<div class="mt-3">
+<div class="mt-3 ">
 
 
   <mat-tab-group mat-align-tabs="center" backgroundColor="accent">
@@ -7,7 +7,7 @@
     <mat-tab label="ToDo">
        <mat-accordion>
     <mat-expansion-panel *ngFor="let task of tasks">
-      <mat-expansion-panel-header *ngIf="task.state.todo.state=='active'">
+      <mat-expansion-panel-header *ngIf="task.state.todo.state=='active' && (_authService.getUsername()==task.assignee.to || _authService.getRole()=='admin')" >
         <mat-panel-title>
            <span>
            <mat-icon title ="{{task.type.name}}"  color="primary" >{{task.type.icon}}</mat-icon> 
@@ -47,7 +47,7 @@
              </mat-form-field>
           </div>
  
-          <div class="col-md-1">
+          <div class="col-md-1" *ngIf="_authService.getRole()=='admin'">
             <button title="Delete Task" mat-mini-fab color="warn" (click)="deleteTask(task._id)">
               <mat-icon>delete</mat-icon>
             </button>
@@ -75,7 +75,7 @@
     <mat-tab label="InProgress">
       <mat-accordion>
         <mat-expansion-panel *ngFor="let task of tasks">
-          <mat-expansion-panel-header *ngIf="task.state.inProgress.state=='active'">
+          <mat-expansion-panel-header *ngIf="task.state.inProgress.state=='active' && (_authService.getUsername()==task.assignee.to || _authService.getRole()=='admin')">
             <mat-panel-title>
                <span>
                <mat-icon title ="{{task.type.name}}"  color="primary" >{{task.type.icon}}</mat-icon> 
@@ -152,7 +152,7 @@
     <mat-tab label="Done">
       <mat-accordion>
         <mat-expansion-panel *ngFor="let task of tasks">
-          <mat-expansion-panel-header *ngIf="task.state.done.state=='active'">
+          <mat-expansion-panel-header *ngIf="task.state.done.state=='active' && (_authService.getUsername()==task.assignee.to || _authService.getRole()=='admin')">
             <mat-panel-title>
                <span>
                <mat-icon title ="{{task.type.name}}"  color="primary" >{{task.type.icon}}</mat-icon> 
@@ -205,8 +205,15 @@
   
 </div>
 
-<div class="fixed-right" >
-  <button mat-fab color="primary" (click)="openNewTask()">
+<div class="fixed-right-up "  *ngIf="_authService.getRole()=='admin'" >
+  <button mat-fab color="accent" title="New Project" (click)="openNewProject()">
+    <mat-icon>bookmarks</mat-icon>
+  </button>
+</div>
+
+
+<div class="fixed-right" *ngIf="_authService.getRole()=='admin'">
+  <button mat-fab color="primary" title="Add Task" (click)="openNewTask()">
     <mat-icon>add</mat-icon>
   </button>
 </div>

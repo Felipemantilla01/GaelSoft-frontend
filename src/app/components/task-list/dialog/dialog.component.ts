@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TasksService } from 'src/app/services/tasks.service';
+import { ProjectsService } from 'src/app/services/projects.service';
 
 @Component({
   selector: 'app-dialog',
@@ -13,6 +14,7 @@ import { TasksService } from 'src/app/services/tasks.service';
 export class DialogComponent implements OnInit {
 
   users
+  projects
   Type=""
 
   public taskTypes =[
@@ -32,7 +34,8 @@ export class DialogComponent implements OnInit {
     private _usersService: UsersService,
     private _router: Router,
     private _snackBar: MatSnackBar,
-    private _taskService : TasksService
+    private _taskService : TasksService,
+    private _projectService : ProjectsService
   ) { }
 
   ngOnInit() {
@@ -45,6 +48,16 @@ export class DialogComponent implements OnInit {
           }
         }
       })
+
+      this._projectService.getProjects().subscribe(
+        projects =>  this.projects = projects,
+        err   =>  {
+          if(err instanceof HttpErrorResponse){
+            if(err.status === 401){
+              this._router.navigate(['/login'])
+            }
+          }
+        })
    
   }
 

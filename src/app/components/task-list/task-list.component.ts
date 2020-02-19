@@ -4,6 +4,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig} from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
+import { DialogProjectComponent } from './dialog-project/dialog-project.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -18,7 +20,8 @@ export class TaskListComponent implements OnInit {
   constructor(
     private _tasksService : TasksService,
     private _router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _authService:AuthService
   ) { }
 
   ngOnInit() {
@@ -38,7 +41,7 @@ export class TaskListComponent implements OnInit {
   }
 
   openNewTask(){
-    const dialogConfig = new MatDialogConfig();
+    let dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true
     dialogConfig.width = "35%"
 
@@ -65,7 +68,7 @@ export class TaskListComponent implements OnInit {
     }
     let response = confirm('Are you sure?')
     if(response){
-      console.log(task)
+      //console.log(task)
       this._tasksService.deleteTask(task).subscribe(
         res=> this.getTasks(),
         err => console.log(err)
@@ -85,6 +88,16 @@ export class TaskListComponent implements OnInit {
         err => console.log(err)
         )
     }
+  }
+
+
+  openNewProject(){
+    let dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true
+    dialogConfig.width = "35%"
+
+    const DD = this.dialog.open(DialogProjectComponent, dialogConfig);
+
   }
 
 

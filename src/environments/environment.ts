@@ -9,6 +9,7 @@ export const environment = {
   _loginUrl:'login',
   _usersUrl : 'users',
   _taskUrl: 'tasks',
+  _projectsUrl: 'projects',
 
 };
 

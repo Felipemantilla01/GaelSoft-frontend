@@ -1,12 +1,18 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="mat-elevation-z10">
     <mat-toolbar-row>
-        <span> <mat-icon style="width: 30px;">account_tree</mat-icon> Gael Soft</span>
+        <span style="margin-right: 80px;"> <mat-icon style="width: 30px;">account_tree</mat-icon> GAEL SOFT</span>
+
+        <button *ngIf="_authService.loggedIn()" class="mat-elevation-z3" mat-button routerLink="/projects" style="text-decoration: none; color:white; margin-right:10px ;" routerLinkActive="active">Projects</button>
+        <button *ngIf="_authService.loggedIn()" class="mat-elevation-z3" mat-button routerLink="/sprints" style="text-decoration: none; color:white; margin-right:10px ;" routerLinkActive="active">Sprints</button>
+        <button *ngIf="_authService.loggedIn()" class="mat-elevation-z3" mat-button routerLink="/dashboard" style="text-decoration: none; color:white" routerLinkActive="active">Dashboard</button>
+
         <span class="example-spacer"></span>
         
 
+    <span style="font-size: 13px; margin-right: 10px;">{{_authService.getUsername()}}</span>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>dehaze</mat-icon>
-          </button>
+          <div mat-card-avatar class="example-header-image mat-elevation-z15"></div>
+        </button>
           <mat-menu #menu="matMenu">
             <button *ngIf="!_authService.loggedIn()" mat-menu-item routerLink="/login" routerLinkActive="active">
               <mat-icon>flight_land</mat-icon>
@@ -26,7 +32,7 @@
     </mat-toolbar-row>
 </mat-toolbar>
 
-<div class="container">
+<div class="container mt-3">
 
   <router-outlet></router-outlet>
 
@@ -35,3 +41,21 @@
     <!-- <login-form></login-form> -->
 </div>
 
+
+
+
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://github.com/Felipemantilla01">  Gael Soft - Open Source Management SCRUM</a><br>
+    <p style="font-size: 10px;">Powered by Felipe Mantilla </p>
+    
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

@@ -29,8 +29,19 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
+  getUsername(){
+    return localStorage.getItem('username')
+  }
+
+  
+  getRole(){
+    return localStorage.getItem('role')
+  }
+
   logoutUser(){
     localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    localStorage.removeItem('role')
     this._router.navigate(['/login'])
   }
 }
