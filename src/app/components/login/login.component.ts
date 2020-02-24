@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
           //console.log(res)
           localStorage.setItem('token', res.token)
           localStorage.setItem('username', res.username)
-          localStorage.setItem('role', res.role)
+          localStorage.setItem('_id', res._id)
           //this.openSnackBar(`${res.email} Login successfully`,'understood', 1000)
           this._router.navigate(['/dashboard'])
         },        

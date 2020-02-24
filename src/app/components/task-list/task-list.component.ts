@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig} from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
-import { DialogProjectComponent } from './dialog-project/dialog-project.component';
+import { DialogProjectComponent } from '../project-list/dialog-project/dialog-project.component';
 import { AuthService } from 'src/app/services/auth.service';
 
 

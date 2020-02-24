@@ -33,6 +33,14 @@ export class TasksService {
 
   createComment(task){
     return this._http.post(`${environment._apiUrl}/${environment._taskUrl}/${task._id}/comments`, task)
-
   }
+
+  getUserTasks(userId,projectId){
+    return this._http.get<any[]>(`${environment._apiUrl}/${environment._usersUrl}/${userId}/projects/${projectId}/tasks`)
+  }
+
+  getProjectTasks(projectId){
+    return this._http.get<any[]>(`${environment._apiUrl}/${environment._projectsUrl}/${projectId}/tasks`)
+  }
+
 }

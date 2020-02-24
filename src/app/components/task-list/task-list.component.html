@@ -23,8 +23,7 @@
             <div class="right"><mat-chip-list >
                 <mat-chip title="responsable" color="warn" selected>{{task.assignee.to}}</mat-chip> 
                 <mat-chip title="project" color="primary" selected>{{task.project}}</mat-chip> 
-
-                
+                <mat-chip  *ngIf="!!task.sprint" title="sprint" color="accent" selected>{{task.sprint}}</mat-chip>                 
             </mat-chip-list>
         </div>
         </mat-panel-description>
@@ -205,16 +204,10 @@
   
 </div>
 
-<div class="fixed-right-up "  *ngIf="_authService.getRole()=='admin'" >
-  <button mat-fab color="accent" title="New Project" (click)="openNewProject()">
-    <mat-icon>bookmarks</mat-icon>
-  </button>
-</div>
-
 
 <div class="fixed-right" *ngIf="_authService.getRole()=='admin'">
   <button mat-fab color="primary" title="Add Task" (click)="openNewTask()">
-    <mat-icon>add</mat-icon>
+    <mat-icon>receipt</mat-icon>
   </button>
 </div>
 

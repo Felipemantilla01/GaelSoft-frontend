@@ -19,10 +19,17 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { DialogComponent } from './components/task-list/dialog/dialog.component';
 import { CommentsComponent } from './components/task-list/comments/comments.component';
-import { DialogProjectComponent } from './components/task-list/dialog-project/dialog-project.component';
+import { DialogProjectComponent } from './components/project-list/dialog-project/dialog-project.component';
 import { UsersService } from './services/users.service';
 import { ProjectsService } from './services/projects.service';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
+import { DialogSprintComponent } from './components/project-details/dialog-sprint/dialog-sprint.component';
+import { TesterComponent } from './components/tester/tester.component';
+import { ProjectDetailsComponent } from './components/project-details/project-details.component';
+import { ControlPanelComponent } from './components/control-panel/control-panel.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DialogTaskComponent } from './components/project-details/dialog-task/dialog-task.component';
 
 @NgModule({
   declarations: [
@@ -34,9 +41,15 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
     DialogComponent,
     CommentsComponent,
     DialogProjectComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    ProjectListComponent,
+    DialogSprintComponent,
+    TesterComponent,
+    ProjectDetailsComponent,
+    ControlPanelComponent,
+    DialogTaskComponent
   ],
-  entryComponents:[DialogComponent, DialogProjectComponent],
+  entryComponents:[DialogComponent, DialogProjectComponent, DialogSprintComponent, DialogTaskComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -45,7 +58,8 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
     MantillaModule,
     MatChipsModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    DragDropModule
   ],
   providers: [UsersService,ProjectsService,TasksService, AuthService, AuthGuard, {
     provide: HTTP_INTERCEPTORS,

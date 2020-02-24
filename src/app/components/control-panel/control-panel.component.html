@@ -1,0 +1,52 @@
+
+
+<mat-tab-group color="primary" backgroundColor="accent">
+  <mat-tab label="Tasks">
+    <div cdkDropListGroup style="overflow: hidden;">
+           
+      <div class="row mt-2 " >
+          <div class="col-md-4 marginZero">
+              
+              <div
+              cdkDropList
+              [cdkDropListData]="todo"
+              class="example-list "
+              (cdkDropListDropped)="drop($event)">
+              <h4 class="text-dark">To Do</h4>
+              <div class="example-box mt-2  mat-elevation-z5"  *ngFor="let item of todo" cdkDrag>{{item.title}}</div>
+            </div>
+
+          </div>
+          <div class="col-md-4">
+              <div
+              cdkDropList
+              [cdkDropListData]="inProgress"
+              class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              <h4 class="text-dark">In Progress</h4>
+              <div class="example-box mt-2 mat-elevation-z5"  *ngFor="let item of inProgress" cdkDrag>{{item.title}}</div>
+            </div>
+              
+          </div>
+          <div class="col-md-4">
+              <div
+              cdkDropList
+              [cdkDropListData]="done"
+              class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              <h4 class="text-dark">Done</h4>
+              <div class="example-box mt-2  mat-elevation-z5"  *ngFor="let item of done" cdkDrag>{{item.title}}</div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Sprints">
+
+  </mat-tab>
+
+</mat-tab-group>
+
+    
+       
+       

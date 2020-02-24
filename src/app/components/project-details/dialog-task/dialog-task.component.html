@@ -6,12 +6,14 @@
     <form autocomplete="off">
         <mat-grid-list cols="1" rowHeight="70px">
               <mat-grid-tile>
+                <mat-icon class="mr-3">fingerprint</mat-icon>
                 <mat-form-field>
                     <input type="text" #title placeholder="Title" class="block" matInput required>                
                 </mat-form-field>            
             </mat-grid-tile>
 
             <mat-grid-tile>
+              <mat-icon class="mr-3">description</mat-icon>
                 <mat-form-field>
                     <input type="text" #description placeholder="Description" class="block" matInput required>                
                 </mat-form-field>            
@@ -24,18 +26,21 @@
             </mat-grid-tile> -->
 
             <mat-grid-tile>
+              <mat-icon class="mr-3">bookmark</mat-icon>
               <mat-form-field >
                   <mat-label>Project</mat-label>
-                  <mat-select #project>
-                    <mat-option *ngFor="let project of projects" [value]="project.name">
-                      {{project.name}}
+                  <input type="text" matInput [value]="data.name" disabled>
+                  <!-- <mat-select #project value="data.name">
+                    <mat-option value="{{data.name }}">
+                      {{data._id }}
                     </mat-option>
-                  </mat-select>
+                    
+                  </mat-select> -->
                 </mat-form-field>          
           </mat-grid-tile>
-
     
             <mat-grid-tile>
+              <mat-icon class="mr-3">group_work</mat-icon>
                 <mat-form-field>
                     <mat-label>Type</mat-label>
                     <mat-select #type >
@@ -47,6 +52,7 @@
             </mat-grid-tile>
     
             <mat-grid-tile>
+              <mat-icon class="mr-3">flag</mat-icon>
                 <mat-form-field >
                     <mat-label>Priority</mat-label>
                     <mat-select #priority>
@@ -59,10 +65,11 @@
             
 
             <mat-grid-tile>
+              <mat-icon class="mr-3">face</mat-icon>
                 <mat-form-field >
                     <mat-label>Assignee</mat-label>
                     <mat-select #assignee>
-                      <mat-option *ngFor="let user of users" [value]="user.username">
+                      <mat-option *ngFor="let user of users" [value]="user._id">
                         {{user.username}}
                       </mat-option>
                     </mat-select>
@@ -79,8 +86,8 @@
             type="submit"  
             mat-raised-button  
             color="primary" 
-            (click)="createNew(description.value,project.value,type.value,priority.value,assignee.value, title.value)"
-            [disabled]="!!!description.value || !!!project.value || !!!type.value || !!!priority.value || !!!assignee.value || !!!title.value" >
+            (click)="createNew(description.value,type.value,priority.value,assignee.value, title.value)"
+            [disabled]="!!!description.value || !!!type.value || !!!priority.value || !!!assignee.value || !!!title.value" >
             Create </button> 
 
 

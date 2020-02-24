@@ -6,10 +6,14 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthGuard } from './auth.guard';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
+import { ProjectDetailsComponent } from './components/project-details/project-details.component';
 
 
 const routes: Routes = [
   {path:'', component	: TaskListComponent},
+  {path:"projects", component: ProjectListComponent, canActivate:[AuthGuard]},
+  {path:"projects/:id", component: ProjectDetailsComponent, canActivate:[AuthGuard]},
   {path:"login", component: LoginComponent},
   {path:"register", component: RegisterComponent},
   {path:"welcome", component: WelcomeComponent, canActivate:[AuthGuard]},

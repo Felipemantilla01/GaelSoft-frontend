@@ -1,0 +1,61 @@
+
+    <h4 mat-dialog-title>  <mat-icon>history</mat-icon> Create new Sprint  </h4>    
+
+    <form autocomplete="off">
+        <mat-grid-list cols="1" rowHeight="70px">
+              <mat-grid-tile>
+                <mat-icon class="mr-3">fingerprint</mat-icon>
+                <mat-form-field>                    
+                    <input type="text" #name placeholder="Name" class="block" matInput required>                
+                </mat-form-field>            
+            </mat-grid-tile>
+
+            <mat-grid-tile >
+                <mat-icon class="mr-3">description</mat-icon>
+                <mat-form-field>                    
+                    <input type="text" #description placeholder="Description" class="block" matInput required>                
+                </mat-form-field>            
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+                <mat-icon class="mr-3">bookmark</mat-icon>
+                <mat-form-field >
+                    <mat-label>Project</mat-label>
+                    <input type="text" matInput [value]="data.name" disabled>
+                    <!-- <mat-select #project value="data.name">
+                      <mat-option value="{{data.name }}">
+                        {{data._id }}
+                      </mat-option>
+                      
+                    </mat-select> -->
+                  </mat-form-field>          
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+              <mat-icon class="mr-3">alarm</mat-icon>
+              <mat-form-field >
+                  <mat-label>Time</mat-label>
+                  <mat-select #duration>
+                    <mat-option *ngFor="let time of times" [value]="time.name">
+                      {{time.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>          
+          </mat-grid-tile>
+
+          </mat-grid-list>
+        
+          <mat-dialog-actions>
+            <button 
+            class=" btn-block" 
+            type="submit"  
+            mat-raised-button  
+            color="primary" 
+            (click)="createSprint(description.value,name.value, duration.value)"
+            [disabled]="!!!description.value || !!!name.value || !!!duration.value" 
+            [mat-dialog-close]="true">
+            Create </button> 
+
+        </mat-dialog-actions>  
+
+    </form>

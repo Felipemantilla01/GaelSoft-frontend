@@ -10,6 +10,7 @@ export const environment = {
   _usersUrl : 'users',
   _taskUrl: 'tasks',
   _projectsUrl: 'projects',
+  _sprintsUrl:'sprints'
 
 };
 

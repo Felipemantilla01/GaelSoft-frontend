@@ -1,0 +1,73 @@
+<mat-toolbar color="accent" class="mat-elevation-z5">
+  <mat-toolbar-row>
+    <span>{{project.name}}</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-grid-list cols="2" rowHeight="2:1">
+
+
+  <!-- <div class="row">
+    <div class="col-md-6 mt-5">
+      <h5>Sprints on waiting</h5>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let sprint of sprints">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{sprint.name}}
+            </mat-panel-title>
+            <mat-panel-description>{{sprint.duration}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <hr>
+
+          <div class="row mat-elevation-z3">
+            <div class="col-md-8">
+              <h5>Panel</h5>
+              <p>Description: {{sprint.description}}</p>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+          </div>
+          <hr>
+
+          <div class="row mat-elevation-z3">
+            <div class="col-md-8">
+              <h5>Sprint Status</h5>
+              <p>Time Start: {{sprint.time.start}}</p>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+
+
+  </div> -->
+
+  <control-panel [projectId]="project._id" [projectLead]="project.lead" ></control-panel>
+
+
+
+  <div class="fixed-right-up" >
+    <button mat-fab color="accent" title="Add Task" (click)="openNewTask()">
+      <mat-icon color="primary" >receipt</mat-icon>
+    </button>
+  </div>
+
+  <div class="fixed-right">
+    <button mat-fab color="primary" title="New Sprint" (click)="openNewSprint()">
+      <mat-icon color="accent">history</mat-icon>
+    </button>
+  </div>
+
+  
