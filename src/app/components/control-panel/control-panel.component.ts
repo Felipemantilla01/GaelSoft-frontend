@@ -27,6 +27,78 @@ tasks:any
   }
 
   ngOnInit(){
+
+    this.getTasks()
+  }
+
+
+  todo = [];
+  inProgress = [];
+  done = [];
+
+  drop(event: CdkDragDrop<string[]>) {
+    console.log(event)
+    console.log(event.previousContainer.element.nativeElement.id)
+    console.log(event.container.element.nativeElement.id)
+    console.log(event.item.element.nativeElement.id)
+    console.log(this.todo)
+
+    let previous = event.previousContainer.element.nativeElement.id
+    let current = event.container.element.nativeElement.id
+    let _id = event.item.element.nativeElement.id
+
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+
+      switch(previous){
+        case 'todo':
+          if (current === 'inProgress') { this.changeContainer(event, _id, current) }
+          break;
+        case 'inProgress':
+          if (current === 'done') { this.changeContainer(event, _id, current) }
+          break;
+        default:
+          
+          break;
+      }
+      
+    }
+  }
+
+
+  changeContainer(event, _id, state){
+    
+    let task={
+      _id,
+      state
+    }
+    this._taskService.updateTask(task).subscribe(
+      res=> {
+        this.done=[]
+        this.inProgress=[]
+        this.todo=[]
+        this.getTasks()
+      },
+      err => console.log(err)
+      )
+      
+    transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);                          
+  }
+
+  pushTasks(tasks){
+    tasks.forEach(task => {
+      if(task.state.todo.state==='active'){this.todo.push(task)}
+      if(task.state.inProgress.state==='active'){this.inProgress.push(task)}
+      if(task.state.done.state==='active'){this.done.push(task)}
+    });
+  }
+
+
+  getTasks(){
     const id: string = this._route.snapshot.params.id; 
     //console.log(id)
     this._projectService.getProject(id).subscribe(
@@ -56,36 +128,6 @@ tasks:any
       },
       err=>console.log(err)
     )
-    
-
-  }
-
-  todo = [];
-  inProgress = [];
-  done = [];
-
-  drop(event: CdkDragDrop<string[]>) {
-    console.log(event)
-    console.log(event.previousContainer.element.nativeElement)
-
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
-    }
-  }
-
-
-  pushTasks(tasks){
-    tasks.forEach(task => {
-      if(task.state.todo.state==='active'){this.todo.push(task)}
-      if(task.state.inProgress.state==='active'){this.inProgress.push(task)}
-      if(task.state.done.state==='active'){this.done.push(task)}
-
-    });
   }
 
 
